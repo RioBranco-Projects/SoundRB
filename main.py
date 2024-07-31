@@ -47,7 +47,7 @@ def buscar_artista():
     subtitulo('Pesquisar Artista')
     nome = str(input('Digite o nome do artista que deseja pesquisar: '))
     print()
-    Artista.encontrar_artista(nome) # ainda não está funcionando
+    Artista.encontrar_artista(nome)
 
     voltar_ao_menu_principal()
 

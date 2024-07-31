@@ -25,11 +25,13 @@ class Artista:
 
     @classmethod
     def encontrar_artista(cls, nome):
-        try:
-            cls.nome = nome
-            for artista in cls.artistas:
-                if cls.nome == artista.nome:
-                    return f'Arista {cls.nome} encontrado!'
-            return f'Artista {cls.nome} não encontrado!'
-        except Exception as e:
-            print(f'O erro foi {e}')
+        cls.nome = nome
+        cls.resultado = False
+        for artista in cls.artistas:
+            if cls.nome == artista._nome:
+                cls.resultado = True
+        
+        if cls.resultado:
+            print('Menu do Artista')
+        if not cls.resultado:
+            print('Artista não encontrado')
