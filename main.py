@@ -12,7 +12,6 @@ def exibir_logo():
 ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═════╝░\n''')
 
 def voltar_ao_menu_principal():
-    os.system('cls')
     print()
     input('Pressione entre para voltar ao menu principal ')
     main()
@@ -44,6 +43,14 @@ def listar_artistas():
     subtitulo('Listando Artistas')
     Artista.listar_artista()
 
+def buscar_artista():
+    subtitulo('Pesquisar Artista')
+    nome = str(input('Digite o nome do artista que deseja pesquisar: '))
+    print()
+    Artista.encontrar_artista(nome) # ainda não está funcionando
+
+    voltar_ao_menu_principal()
+
 def opcoes_do_menu():
     print('1. Cadastrar artista')
     print('2. Listar artistas cadastrados')
@@ -56,7 +63,7 @@ def opcao_escolhida_pelo_usuario():
         match opcao_escolhida:
             case 1: cadastrar_artista()
             case 2: listar_artistas()
-            case 3: print('buscar_artista()')
+            case 3: buscar_artista()
             case 4: print('sair_do_aplicativo()')
             case _: opcao_invalida()
     except Exception as e:

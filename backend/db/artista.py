@@ -22,3 +22,14 @@ class Artista:
         for artista in cls.artistas:
             print(f'{artista._nome.ljust(25)} | {str(artista._idade).ljust(10)} | {artista._nacionalidade.ljust(25)} | {artista.disponivel}')
         print('-' * 75)
+
+    @classmethod
+    def encontrar_artista(cls, nome):
+        try:
+            cls.nome = nome
+            for artista in cls.artistas:
+                if cls.nome == artista.nome:
+                    return f'Arista {cls.nome} encontrado!'
+            return f'Artista {cls.nome} não encontrado!'
+        except Exception as e:
+            print(f'O erro foi {e}')
