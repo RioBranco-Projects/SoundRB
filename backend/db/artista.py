@@ -16,5 +16,9 @@ class Artista:
 
     @classmethod
     def listar_artista(cls):
+        print('-' * 75)
+        print(f'{"Nome".ljust(25)} | {"Idade".ljust(10)} | {"Nacionalidade".ljust(25)} | Status')
+        print('-' * 75)
         for artista in cls.artistas:
-            print(f'Nome: {artista._nome}') 
+            print(f'{artista._nome.ljust(25)} | {str(artista._idade).ljust(10)} | {artista._nacionalidade.ljust(25)} | {artista.disponivel}')
+        print('-' * 75)

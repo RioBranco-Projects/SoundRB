@@ -21,13 +21,27 @@ def opcao_invalida():
     print('Opção inválida')
     voltar_ao_menu_principal()
 
+def subtitulo(txt):
+    os.system('cls')
+    asteriscos = '*' * (len(txt) + 4)
+    print(asteriscos)
+    print(f'  {txt}  ')
+    print(asteriscos)
+    print()
+
 def cadastrar_artista():
+    subtitulo('Cadastrar Artista')
+
     nome = str(input('Digite o nome do artista: '))
     idade = str(input(f'Digite a idade do {nome}: '))
     nacionalidade = str(input(f'Digite a nacionalidade do {nome}: '))
     artista = Artista(nome, idade, nacionalidade)
+    print(f'Artista {nome} cadastrado com sucesso!')
+    
+    voltar_ao_menu_principal()
 
 def listar_artistas():
+    subtitulo('Listando Artistas')
     Artista.listar_artista()
 
 def opcoes_do_menu():
@@ -48,7 +62,7 @@ def opcao_escolhida_pelo_usuario():
     except Exception as e:
         print(f'{e}')
 
-# artista1 = Artista('Marco Telles', 35, 'Brasileiro')
+artista1 = Artista('Marco Telles', 35, 'Brasileiro')
 
 def main():
     os.system('cls')
