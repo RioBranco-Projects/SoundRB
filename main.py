@@ -1,6 +1,5 @@
 import os
-from backend.db.corpo import *
-from backend.db.artista import Artista
+from backend.model.artista import Artista
 
 def exibir_logo():
     print('''
@@ -21,7 +20,7 @@ def opcao_invalida():
     voltar_ao_menu_principal()
 
 def subtitulo(txt):
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     asteriscos = '*' * (len(txt) + 4)
     print(asteriscos)
     print(f'  {txt}  ')
@@ -41,7 +40,8 @@ def cadastrar_artista():
 
 def listar_artistas():
     subtitulo('Listando Artistas')
-    Artista.listar_artista()
+    Artista.listar_artistas()
+    voltar_ao_menu_principal()
 
 def buscar_artista():
     subtitulo('Pesquisar Artista')
@@ -51,11 +51,20 @@ def buscar_artista():
 
     voltar_ao_menu_principal()
 
+def deletar_artista():
+    subtitulo('Deletar Artista')
+    nome = str(input('Digite o nome do artista que deseja deletar: '))
+    print()
+    Artista.deletar_artista(nome)
+
+    voltar_ao_menu_principal()
+
 def opcoes_do_menu():
     print('1. Cadastrar artista')
     print('2. Listar artistas cadastrados')
     print('3. Buscar artista')
-    print('4. Sair\n')
+    print('4. Deletar artista')
+    print('5. Sair\n')
 
 def opcao_escolhida_pelo_usuario():
     opcao_escolhida = int(input('Digite a opção escolhida: '))
@@ -64,19 +73,17 @@ def opcao_escolhida_pelo_usuario():
             case 1: cadastrar_artista()
             case 2: listar_artistas()
             case 3: buscar_artista()
-            case 4: print('sair_do_aplicativo()')
+            case 4: deletar_artista()
+            case 5: print('Saindo do aplicativo...')
             case _: opcao_invalida()
     except Exception as e:
         print(f'{e}')
 
-artista1 = Artista('Marco Telles', 35, 'Brasileiro')
-
 def main():
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     exibir_logo()
     opcoes_do_menu()
     opcao_escolhida_pelo_usuario()
-
 
 if __name__ == '__main__':
     main()
