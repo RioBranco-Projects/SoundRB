@@ -1,6 +1,6 @@
 import sqlite3
 
-class Artista:
+class Artista():
     artistas = []
 
     def __init__(self, nome, idade, nacionalidade):
@@ -9,6 +9,7 @@ class Artista:
         self._nacionalidade = nacionalidade
         self._disponivel = False
         self.artistas.append(self)
+        self.caracteriscas = False
         self.salvar_no_banco()
 
     def salvar_no_banco(self):
@@ -28,6 +29,15 @@ class Artista:
     def disponivel(self):
         return '✅' if self._disponivel else '❎'
 
+    @property
+    def caracteriscas(self):
+        descricao = str(input('Digite as informações do artista: '))
+        self.caracteriscas = True
+
+    @caracteriscas.setter
+    def caracteriscas(self):
+        pass
+    
     @classmethod
     def listar_artistas(cls):
         conn = sqlite3.connect('db/artistas.db')
@@ -42,7 +52,7 @@ class Artista:
         for row in rows:
             nome, idade, nacionalidade, disponivel = row
             status = '✅' if disponivel else '❎'
-            print(f'{nome.ljust(25)} | {str(idade).ljust(10)} | {nacionalidade.ljust(25)} | {status}')
+            print(f'{nome.ljust(25)} | {str(idade).ljust(10)} | {nacionalidade.ljust(25)} | {disponivel}')
         print('-' * 75)
 
     @classmethod
@@ -56,9 +66,10 @@ class Artista:
         if row:
             nome, idade, nacionalidade, disponivel = row
             status = '✅' if disponivel else '❎'
-            print(f'Nome: {nome} | Idade: {idade} | Nacionalidade: {nacionalidade} | Status: {status}')
+            print(f'Nome: {nome} | Idade: {idade} | Nacionalidade: {nacionalidade} | Status: {disponivel}')
         else:
             print('Artista não encontrado')
+   
     @classmethod
     def deletar_artista(cls, nome):
         conn = sqlite3.connect('db/artistas.db')

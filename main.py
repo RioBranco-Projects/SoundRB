@@ -59,6 +59,9 @@ def deletar_artista():
 
     voltar_ao_menu_principal()
 
+def sair_do_aplicativo():
+    print('Bye Bye :)')
+
 def opcoes_do_menu():
     print('1. Cadastrar artista')
     print('2. Listar artistas cadastrados')
@@ -74,7 +77,7 @@ def opcao_escolhida_pelo_usuario():
             case 2: listar_artistas()
             case 3: buscar_artista()
             case 4: deletar_artista()
-            case 5: print('Saindo do aplicativo...')
+            case 5: sair_do_aplicativo()
             case _: opcao_invalida()
     except Exception as e:
         print(f'{e}')
